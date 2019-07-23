@@ -56,22 +56,32 @@ $("#add-user").on("click", function (event) {
 });
 
 // Firebase watcher + initial loader HINT: .on("value")
-database.ref().on("value", function (snapshot) {
+database.ref().on("child_added", function(snapshot) {
+
+  var sv = snapshot.val();
 
   // Log everything that's coming out of snapshot
-  console.log(snapshot.val());
-  console.log(snapshot.val().name);
-  console.log(snapshot.val().email);
-  console.log(snapshot.val().age);
-  console.log(snapshot.val().comment);
+  console.log(sv.name);
+  console.log(sv.role);
+  console.log(sv.startDate);
+  console.log(sv.monthlyRate);
 
   // Change the HTML to reflect
-  $("#nameData").text(snapshot.val().name);
-  $("#roleData").text(snapshot.val().role);
-  $("#dateData").text(snapshot.val().startDate);
-  $("#monthData").text(snapshot.val().monthlyRate);
+  $("#nameData").text(sv.name);
+  $("#roleData").text(sv.role);
+  $("#dateData").text(sv.startDate);
+  $("#monthData").text(sv.monthlyRate);
 
   // Handle the errors
 }, function (errorObject) {
   console.log("Errors handled: " + errorObject.code);
 });
+
+var newRow = $("<tr>").append(
+  $("<td>").text(empName),
+  $("<td>").text(empRole),
+  $("<td>").text(empStartDate),
+  $("<td>").text(empMonths),
+  $("<td>").text(empRate),
+  $("<td>").text(empBilled),
+);
