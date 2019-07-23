@@ -42,12 +42,21 @@ var config = {
   startDate = "01/21/1963",
   monthlyRate = 450 
 
-  database.ref().push({
-    name: name,
-    role: role,
-    startDate: startDate,
-    monthlyRate: monthlyRate
-  });
 
+$("#submitBtn").on("click", function() {
 
+    name = $("#name-input").val();
+    role = $("#role-input").val();
+    console.log("name: " + name);
+    console.log("role: " + role);
+    startDate = $("#date-input").val();
+    monthlyRate = $("#rate-input").val();
 
+    database.ref().push({
+        name: name,
+        role: role,
+        startDate: startDate,
+        monthlyRate: monthlyRate
+      });
+        debugger;s
+});
