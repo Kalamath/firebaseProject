@@ -41,6 +41,11 @@ $("#add-user").on("click", function (event) {
   console.log("startDate: " + startDate);
   console.log("monthlyRate: " + monthlyRate);
 
+  name = "John F Kennedy",
+  role = "CEO",
+  startDate = "01/21/1963",
+  monthlyRate = 450 
+
   database.ref().push({
     name: name,
     role: role,
